@@ -1,0 +1,156 @@
+<h2>Task Manager</h2>
+<div>
+    <h3>Add Task Manager</h3>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+            <label for="exampleInputtask">Task</label>
+            <input type="text" class="form-control" formControlName="task" placeholder="Task">
+            <small class="form-text text-muted"
+                *ngIf="taskForm.controls.task.touched && taskForm.controls.task.errors?.required">
+                Please enter task.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputpriority">Priority</label>
+            <input type="range" min="0" max="30" class="form-control" formControlName="priority" placeholder="Priority">
+            <small class="form-text text-muted"
+                *ngIf="taskForm.controls.priority.touched && taskForm.controls.priority.errors?.required">
+                Please enter Priority.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputparenttask">Parent Task</label>
+            <input type="text" class="form-control" formControlName="parenttask" placeholder="Parent Task">
+            <small class="form-text text-muted"
+                *ngIf="taskForm.controls.parenttask.touched && taskForm.controls.parenttask.errors?.required">
+                Please enter parent task.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputstartdate">Start Date</label>
+            <input type="date" class="form-control" formControlName="startdate" placeholder="Start Date">
+            <small class="form-text text-muted"
+                *ngIf="taskForm.controls.startdate.touched && taskForm.controls.startdate.errors?.required">
+                Please enter Start Date.!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputenddate">End Date</label>
+            <input type="date" class="form-control" formControlName="enddate" placeholder="End Date">
+            <small class="form-text text-muted"
+                *ngIf="taskForm.controls.enddate.touched && taskForm.controls.enddate.errors?.required">
+                Please enter End Date.!
+            </small>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<div>
+    <h4>View Task Manager</h4>
+    <table border="1">
+        <tr>
+            <th class="h1">Sl No</th>
+            <th class="h2">Task</th>
+            <th class="h3">Parent Task</th>
+            <th class="h4">Priority</th>
+            <th class="h5">Start Date</th>
+            <th class="h6">End Date</th>
+            <th class="h7">Action</th>
+        </tr>
+
+        <tr *ngFor="let task of taskDataupdate;let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+
+                {{task.task}}</td>
+
+            <td>
+
+                {{task.parenttask}}
+            </td>
+            <td>{{task.priority}}</td>
+            <td>
+
+                {{task.startdate}}
+            </td>
+            <td>
+
+                {{task.enddate}}
+            </td>
+
+            <td>
+                <div>
+                    <button
+                        (click)="update(task.id,task.task,task.parenttask,task.priority,task.startdate,task.enddate)">Edit</button>
+                    <button>End Task</button>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h5>Update Task Manager</h5>
+    <form [formGroup]="taskupdateForm" (ngSubmit)="onSubmitupdate()" novalidate>
+        <div class="form-group">
+            <label for="exampleInputtask">Id</label>
+            <input type="text" class="form-control" formControlName="id" placeholder="ID" disabled>
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputtask">Task</label>
+            <input type="text" class="form-control" formControlName="task" placeholder="Task">
+            <small class="form-text text-muted"
+                *ngIf="taskupdateForm.controls.task.touched && taskupdateForm.controls.task.errors?.required">
+                Please enter task.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputpriority">Priority</label>
+            <input type="range" min="0" max="30" class="form-control" formControlName="priority" placeholder="Priority">
+            <small class="form-text text-muted"
+                *ngIf="taskupdateForm.controls.priority.touched && taskupdateForm.controls.priority.errors?.required">
+                Please enter Priority.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputparenttask">Parent Task</label>
+            <input type="text" class="form-control" formControlName="parenttask" placeholder="Parent Task">
+            <small class="form-text text-muted"
+                *ngIf="taskupdateForm.controls.parenttask.touched && taskupdateForm.controls.parenttask.errors?.required">
+                Please enter parent task.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputstartdate">Start Date</label>
+            <input type="date" class="form-control" formControlName="startdate" placeholder="Start Date">
+            <small class="form-text text-muted"
+                *ngIf="taskupdateForm.controls.startdate.touched && taskupdateForm.controls.startdate.errors?.required">
+                Please enter Start Date.!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputenddate">End Date</label>
+            <input type="date" class="form-control" formControlName="enddate" placeholder="End Date">
+            <small class="form-text text-muted"
+                *ngIf="taskupdateForm.controls.enddate.touched && taskupdateForm.controls.enddate.errors?.required">
+                Please enter End Date.!
+            </small>
+        </div>
+
+        <button type="submit">Update</button>
+
+    </form>
+    <button (click)="clearInput()">Cancel</button>
+</div>
